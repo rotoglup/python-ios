@@ -23,6 +23,10 @@ COMPILED_WITH_PYDEBUG = hasattr(sys, 'gettotalrefcount')
 # This global variable is used to hold the list of modules to be disabled.
 disabled_module_list = []
 
+# _ctypes fails to cross-compile due to the libffi configure script.
+if os.environ.has_key('PYTHONXCPREFIX'):
+    disabled_module_list.append('_ctypes')
+
 def add_dir_to_list(dirlist, dir):
     """Add the directory 'dir' to the list 'dirlist' (at the front) if
     1) 'dir' is not already in 'dirlist'
@@ -278,6 +282,14 @@ class PyBuildExt(build_ext):
                           (ext.name, sys.exc_info()[1]))
             self.failed.append(ext.name)
             return
+
+        # Inport check will not work when cross-compiling.
+        if os.environ.has_key('PYTHONXCPREFIX'):
+            self.announce(
+                'WARNING: skipping import check for cross-compiled: "%s"' %
+                ext.name)
+            return
+
         # Workaround for Mac OS X: The Carbon-based modules cannot be
         # reliably imported into a command-line Python
         if 'Carbon' in ext.extra_link_args:
