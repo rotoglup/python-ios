@@ -1,0 +1,291 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1ACC1029152DE96C00D3A223 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACC1028152DE96C00D3A223 /* SenTestingKit.framework */; };
+		1ACC102B152DE96C00D3A223 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACC102A152DE96C00D3A223 /* UIKit.framework */; };
+		1ACC102D152DE96C00D3A223 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACC102C152DE96C00D3A223 /* Foundation.framework */; };
+		1ACC1033152DE96C00D3A223 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1ACC1031152DE96C00D3A223 /* InfoPlist.strings */; };
+		1ACC1036152DE96C00D3A223 /* python_ios_unit_tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC1035152DE96C00D3A223 /* python_ios_unit_tests.m */; };
+		1ACC103C152DED0800D3A223 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACC103B152DED0800D3A223 /* libz.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1ACC1025152DE96C00D3A223 /* python-ios-unit-tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "python-ios-unit-tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ACC1028152DE96C00D3A223 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		1ACC102A152DE96C00D3A223 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		1ACC102C152DE96C00D3A223 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		1ACC1030152DE96C00D3A223 /* python-ios-unit-tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "python-ios-unit-tests-Info.plist"; sourceTree = "<group>"; };
+		1ACC1032152DE96C00D3A223 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1ACC1034152DE96C00D3A223 /* python_ios_unit_tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = python_ios_unit_tests.h; sourceTree = "<group>"; };
+		1ACC1035152DE96C00D3A223 /* python_ios_unit_tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = python_ios_unit_tests.m; sourceTree = "<group>"; };
+		1ACC1037152DE96C00D3A223 /* python-ios-unit-tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "python-ios-unit-tests-Prefix.pch"; sourceTree = "<group>"; };
+		1ACC103B152DED0800D3A223 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1ACC1021152DE96C00D3A223 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ACC103C152DED0800D3A223 /* libz.dylib in Frameworks */,
+				1ACC1029152DE96C00D3A223 /* SenTestingKit.framework in Frameworks */,
+				1ACC102B152DE96C00D3A223 /* UIKit.framework in Frameworks */,
+				1ACC102D152DE96C00D3A223 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1ACC1017152DE91900D3A223 = {
+			isa = PBXGroup;
+			children = (
+				1ACC103B152DED0800D3A223 /* libz.dylib */,
+				1ACC102E152DE96C00D3A223 /* python-ios-unit-tests */,
+				1ACC1027152DE96C00D3A223 /* Frameworks */,
+				1ACC1026152DE96C00D3A223 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1ACC1026152DE96C00D3A223 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC1025152DE96C00D3A223 /* python-ios-unit-tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1ACC1027152DE96C00D3A223 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC1028152DE96C00D3A223 /* SenTestingKit.framework */,
+				1ACC102A152DE96C00D3A223 /* UIKit.framework */,
+				1ACC102C152DE96C00D3A223 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1ACC102E152DE96C00D3A223 /* python-ios-unit-tests */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC1034152DE96C00D3A223 /* python_ios_unit_tests.h */,
+				1ACC1035152DE96C00D3A223 /* python_ios_unit_tests.m */,
+				1ACC102F152DE96C00D3A223 /* Supporting Files */,
+			);
+			path = "python-ios-unit-tests";
+			sourceTree = "<group>";
+		};
+		1ACC102F152DE96C00D3A223 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC1030152DE96C00D3A223 /* python-ios-unit-tests-Info.plist */,
+				1ACC1031152DE96C00D3A223 /* InfoPlist.strings */,
+				1ACC1037152DE96C00D3A223 /* python-ios-unit-tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1ACC1024152DE96C00D3A223 /* python-ios-unit-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1ACC1038152DE96C00D3A223 /* Build configuration list for PBXNativeTarget "python-ios-unit-tests" */;
+			buildPhases = (
+				1ACC1020152DE96C00D3A223 /* Sources */,
+				1ACC1021152DE96C00D3A223 /* Frameworks */,
+				1ACC1022152DE96C00D3A223 /* Resources */,
+				1ACC1023152DE96C00D3A223 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "python-ios-unit-tests";
+			productName = "python-ios-unit-tests";
+			productReference = 1ACC1025152DE96C00D3A223 /* python-ios-unit-tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1ACC1019152DE91900D3A223 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 1ACC101C152DE91900D3A223 /* Build configuration list for PBXProject "python-ios-unit-tests" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1ACC1017152DE91900D3A223;
+			productRefGroup = 1ACC1026152DE96C00D3A223 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1ACC1024152DE96C00D3A223 /* python-ios-unit-tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1ACC1022152DE96C00D3A223 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ACC1033152DE96C00D3A223 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1ACC1023152DE96C00D3A223 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1ACC1020152DE96C00D3A223 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ACC1036152DE96C00D3A223 /* python_ios_unit_tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1ACC1031152DE96C00D3A223 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1ACC1032152DE96C00D3A223 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1ACC101E152DE91900D3A223 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		1ACC101F152DE91900D3A223 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		1ACC1039152DE96C00D3A223 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "python-ios-unit-tests/python-ios-unit-tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../_python-ios-simulator/include/python2.7";
+				INFOPLIST_FILE = "python-ios-unit-tests/python-ios-unit-tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = "../_python-ios-simulator/lib";
+				OTHER_LDFLAGS = "-lpython2.7";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		1ACC103A152DE96C00D3A223 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "python-ios-unit-tests/python-ios-unit-tests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../_python-ios-simulator/include/python2.7";
+				INFOPLIST_FILE = "python-ios-unit-tests/python-ios-unit-tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = "../_python-ios-simulator/lib";
+				OTHER_LDFLAGS = "-lpython2.7";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1ACC101C152DE91900D3A223 /* Build configuration list for PBXProject "python-ios-unit-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ACC101E152DE91900D3A223 /* Debug */,
+				1ACC101F152DE91900D3A223 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1ACC1038152DE96C00D3A223 /* Build configuration list for PBXNativeTarget "python-ios-unit-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ACC1039152DE96C00D3A223 /* Debug */,
+				1ACC103A152DE96C00D3A223 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1ACC1019152DE91900D3A223 /* Project object */;
+}

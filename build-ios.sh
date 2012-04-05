@@ -41,6 +41,10 @@ function deduplicate() {
 
 echo "Building host for native machine ============================================"
 
+if [ ! -f Parser/hostpgen ]; then
+
+[ -f Makefile ] && try make distclean
+
 # make sure that we make a clean start
 # Copy our setup for host python static modules, to enable working without being properly installed
 try rm -f ./Modules/Setup.local
@@ -55,9 +59,11 @@ try mv python.exe hostpython
 # preserve host 'pgen' which is the whole point of building the native version of python, this files not provided in binary distributions of python
 try mv Parser/pgen Parser/hostpgen
 
+fi
+
 echo "Building for iOS device ======================================================="
 
-try make distclean
+[ -f Makefile ] && try make distclean
 
 # flags for arm compilation
 export DEVROOT=$IOS_PLATFORMS_ROOT/iPhoneOS.platform/Developer
@@ -86,7 +92,7 @@ try cp -f ./Modules/Setup.ios ./Modules/Setup.local
 try ./configure CC="$ARM_CC" LD="$ARM_LD" \
 	CFLAGS="$ARM_CFLAGS" LDFLAGS="$ARM_LDFLAGS" \
 	CXX="$ARM_CXX" CXXFLAGS="$ARM_CFLAGS" \
-	--disable-toolbox-glue \
+  --disable-toolbox-glue \
 	--host=armv7-apple-darwin \
 	--prefix=`pwd`/_python-ios-arm \
 	--without-doc-strings
@@ -104,7 +110,7 @@ try make -j2 install HOSTPYTHON="`pwd`/hostpython" CROSS_COMPILE_TARGET=yes pref
 
 echo "Building for iOS simulator ======================================================="
 
-try make distclean
+[ -f Makefile ] && try make distclean
 
 # flags for simulator compilation
 export DEVROOT=$IOS_PLATFORMS_ROOT/iPhoneSimulator.platform/Developer
