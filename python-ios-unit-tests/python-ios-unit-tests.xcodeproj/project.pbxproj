@@ -46,7 +46,6 @@
 		1ACC1017152DE91900D3A223 = {
 			isa = PBXGroup;
 			children = (
-				1ACC103B152DED0800D3A223 /* libz.dylib */,
 				1ACC102E152DE96C00D3A223 /* python-ios-unit-tests */,
 				1ACC1027152DE96C00D3A223 /* Frameworks */,
 				1ACC1026152DE96C00D3A223 /* Products */,
@@ -64,6 +63,7 @@
 		1ACC1027152DE96C00D3A223 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1ACC103B152DED0800D3A223 /* libz.dylib */,
 				1ACC1028152DE96C00D3A223 /* SenTestingKit.framework */,
 				1ACC102A152DE96C00D3A223 /* UIKit.framework */,
 				1ACC102C152DE96C00D3A223 /* Foundation.framework */,
@@ -284,6 +284,7 @@
 				1ACC103A152DE96C00D3A223 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
