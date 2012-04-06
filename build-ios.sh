@@ -3,12 +3,22 @@
 # TODO assemble a fat libpython for armv7 + i686
 # TODO ios specific python patch for module import (dolmen)
 # TODO ios specific ctypes (arm + dolmen)
+# TODO make a proper iOS framework, see http://www.cocoanetics.com/2010/04/making-your-own-iphone-frameworks/
 
 set -x
 
 try () {
 	"$@" || exit -1
 }
+
+# output path, made absolute
+# TODO should not be contained in python source directory as 'make clean' removes every '.a' file in subfolders
+[ -z $1 ] && echo "Usage: $0 <python_install_folder>" && exit 1
+PYTHON_OUTPUT_PATH=`cd $1; pwd`
+
+try mkdir $PYTHON_OUTPUT_PATH/build
+try mkdir $PYTHON_OUTPUT_PATH/build/lib
+try mkdir $PYTHON_OUTPUT_PATH/bundle
 
 # iOS SDK Environmnent, either from environment or default values
 [ -z $IOS_SDK_VER ] && export IOS_SDK_VER="5.1"
@@ -103,7 +113,7 @@ try make -j2 HOSTPYTHON="`pwd`/hostpython" HOSTPGEN="`pwd`/Parser/hostpgen" \
 
 try make -j2 install HOSTPYTHON="`pwd`/hostpython" CROSS_COMPILE_TARGET=yes prefix=`pwd`/_python-ios-arm
 
-#try mv -f $BUILDROOT/python/lib/libpython2.7.a $BUILDROOT/lib/
+try mv -f _python-ios-arm/lib/libpython2.7.a $PYTHON_OUTPUT_PATH/build/lib/libpython2.7-arm.a
 
 #deduplicate $BUILDROOT/lib/libpython2.7.a
 
@@ -150,6 +160,53 @@ try make -j2 HOSTPYTHON="`pwd`/hostpython" HOSTPGEN="`pwd`/Parser/hostpgen" \
 
 try make -j2 install HOSTPYTHON="`pwd`/hostpython" CROSS_COMPILE_TARGET=yes prefix=`pwd`/_python-ios-simulator
 
+try mv -f _python-ios-simulator/lib/libpython2.7.a $PYTHON_OUTPUT_PATH/build/lib/libpython2.7.a
 #try mv -f $BUILDROOT/python/lib/libpython2.7.a $BUILDROOT/lib/
 
 #deduplicate $BUILDROOT/lib/libpython2.7.a
+
+echo "Creating installation ======================================================="
+
+try pushd _python-ios-simulator
+
+# start base taken from https://github.com/kivy/kivy-ios/blob/master/tools/reduce-python.sh
+#
+# remove source and useless files from 'lib' folder
+#
+# preserve files that are needed by 'sysconfig.py' in 'get_config_vars()' and used to validate the python installation:
+#   include/python2.7/pyconfig.h
+#   lib/python2.7/config/Makefile
+#
+# create a lib/python27.zip file containing modules
+#
+
+pushd ./lib
+
+find . -iname '*.pyc' | xargs rm
+find . -iname '*.py' | xargs rm
+find . -iname 'test*' | xargs rm -rf
+rm -rf *test* lib* wsgiref bsddb curses idlelib hotshot || true
+rm -rf pkgconfig || true
+
+pushd ./python2.7
+
+mv config/Makefile ../config_Makefile
+rm -rf config
+
+zip -r ../python27.zip *
+rm -rf *
+
+mkdir config
+mv ../config_Makefile config/Makefile
+
+popd
+
+popd
+
+cp -R include/python2.7 "$PYTHON_OUTPUT_PATH/build/include"
+cp -R lib "$PYTHON_OUTPUT_PATH/bundle/lib"
+mkdir "$PYTHON_OUTPUT_PATH/bundle/include"
+mkdir "$PYTHON_OUTPUT_PATH/bundle/include/python2.7"
+cp include/python2.7/pyconfig.h "$PYTHON_OUTPUT_PATH/bundle/include/python2.7"
+
+try popd
