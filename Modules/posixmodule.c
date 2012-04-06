@@ -479,6 +479,15 @@ convertenviron(void)
     d = PyDict_New();
     if (d == NULL)
         return NULL;
+
+#if defined(PYOS_APPLE_IOS)
+    /* consider we don't have access to environment variables, 
+     * as _NSGetEnviron is 'non-public' and breaks
+     * 'iPhone Developer Program License Agreement'
+     */
+    return d;
+#endif
+
 #ifdef WITH_NEXT_FRAMEWORK
     if (environ == NULL)
         environ = *_NSGetEnviron();
