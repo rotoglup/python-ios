@@ -14,11 +14,12 @@ try () {
 # output path, made absolute
 # TODO should not be contained in python source directory as 'make clean' removes every '.a' file in subfolders
 [ -z $1 ] && echo "Usage: $0 <python_install_folder>" && exit 1
+[ ! -d $1 ] && echo "Folder $1 does not exist" && exit 1
 PYTHON_OUTPUT_PATH=`cd $1; pwd`
 
-try mkdir $PYTHON_OUTPUT_PATH/build
-try mkdir $PYTHON_OUTPUT_PATH/build/lib
-try mkdir $PYTHON_OUTPUT_PATH/bundle
+try mkdir "$PYTHON_OUTPUT_PATH/build"
+try mkdir "$PYTHON_OUTPUT_PATH/build/lib"
+try mkdir "$PYTHON_OUTPUT_PATH/bundle"
 
 # iOS SDK Environmnent, either from environment or default values
 [ -z $IOS_SDK_VER ] && export IOS_SDK_VER="5.1"
