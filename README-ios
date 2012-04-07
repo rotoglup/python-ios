@@ -1,3 +1,9 @@
 iOS SDK does not provide the `environ` variable used in `Modules/posixmodule.c`. One should use `_NSGetEnviron()` function, but Apple considers it as a 'non-public API' and have rejected apps from the AppStore because of its use. Thus, disabled if `PYOS_APPLE_IOS` is defined.
 
 Modified `configure` to accept a user-defined path for libffi, given through the preexisting --with-system-ffi argument. This allows to use a version of libffi supporting iOS arm architecture (3.0.11rc3 +).
+
+`ctypes` is added as a static module in `Setup.ios`, this way it is not configured by `setup.py`.
+
+`ctypes` can only access functions in the application binary (no dynamic linking). Added an `ios` folder in `Modules/_ctypes`, containing sources where all dynamic loading is routed to the application binary using RTDL_MAIN_ONLY special handle.
+
+Note that `ctypes` can only access symbols that are 'external' in the application binary. This can be checked using `nm -m` command.

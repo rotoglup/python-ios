@@ -11,8 +11,17 @@ extern "C" {
 
 #ifndef MS_WIN32
 
+#ifdef PYOS_APPLE_IOS
+  
+#define CTYPES_DARWIN_DLFCN
+#include "ios/dlfcn_static.h"
+
+#else
+  
 #include <dlfcn.h>
 
+#endif /* !PYOS_APPLE_IOS */
+  
 #ifndef CTYPES_DARWIN_DLFCN
 
 #define ctypes_dlsym dlsym

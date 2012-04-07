@@ -38,7 +38,7 @@ zlib zlibmodule.c -I$(prefix)/include -L$(exec_prefix)/lib -lz
 xxsubtype xxsubtype.c
 unicodedata unicodedata.c    # static Unicode character database
 
-_ctypes -I$(LIBFFI_INCLUDEDIR) -lffi _ctypes/_ctypes.c _ctypes/callbacks.c _ctypes/callproc.c _ctypes/stgdict.c _ctypes/cfield.c
+_ctypes -I$(LIBFFI_INCLUDEDIR) -lffi _ctypes/_ctypes.c _ctypes/callbacks.c _ctypes/callproc.c _ctypes/stgdict.c _ctypes/cfield.c _ctypes/ios/dlfcn_static.c
 
 # Theses modules are used by Kivy inside other module
 # json in Settings, _io by zipfile...
