@@ -2114,10 +2114,17 @@ AC_ARG_WITH(system_ffi,
             [],
             [with_system_ffi="no"])
 
-if test "$with_system_ffi" = "yes" && test -n "$PKG_CONFIG"; then
-    LIBFFI_INCLUDEDIR="`"$PKG_CONFIG" libffi --cflags-only-I 2>/dev/null | sed -e 's/^-I//;s/ *$//'`"
-else
+#if test "$with_system_ffi" = "yes" && test -n "$PKG_CONFIG"; then
+#    LIBFFI_INCLUDEDIR="`"$PKG_CONFIG" libffi --cflags-only-I 2>/dev/null | sed -e 's/^-I//;s/ *$//'`"
+#else
+#    LIBFFI_INCLUDEDIR=""
+#fi
+if test "$with_system_ffi" = "no"; then
     LIBFFI_INCLUDEDIR=""
+else
+    LIBFFI_INCLUDEDIR="$with_system_ffi"
+    LDFLAGS="${LDFLAGS} -L$with_system_ffi"
+    test -d "$LIBFFI_INCLUDEDIR" || as_fn_error "--with-system-ffi: missing include directory $LIBFFI_INCLUDEDIR"
 fi
 AC_SUBST(LIBFFI_INCLUDEDIR)
 

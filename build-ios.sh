@@ -1,6 +1,5 @@
 #!/bin/bash
 # TODO simplify/factorize build for device/simulator
-# TODO assemble a fat libpython for armv7 + i686
 # TODO ios specific python patch for module import (dolmen)
 # TODO ios specific ctypes (arm + dolmen)
 # TODO make a proper iOS framework, see http://www.cocoanetics.com/2010/04/making-your-own-iphone-frameworks/
@@ -17,9 +16,9 @@ try () {
 [ ! -d $1 ] && echo "Folder $1 does not exist" && exit 1
 PYTHON_OUTPUT_PATH=`cd $1; pwd`
 
-try mkdir "$PYTHON_OUTPUT_PATH/build"
-try mkdir "$PYTHON_OUTPUT_PATH/build/lib"
-try mkdir "$PYTHON_OUTPUT_PATH/bundle"
+mkdir "$PYTHON_OUTPUT_PATH/build"
+mkdir "$PYTHON_OUTPUT_PATH/build/lib"
+mkdir "$PYTHON_OUTPUT_PATH/bundle"
 
 # iOS SDK Environmnent, either from environment or default values
 [ -z $IOS_SDK_VER ] && export IOS_SDK_VER="5.1"
@@ -27,10 +26,10 @@ try mkdir "$PYTHON_OUTPUT_PATH/bundle"
 [ -z $IOS_PLATFORMS_ROOT ] && export IOS_PLATFORMS_ROOT="/Applications/Xcode.app/Contents/Developer/Platforms"
 [ -z $IOS_DEVICE_HOSTARCH ] && export IOS_DEVICE_HOSTARCH="arm-apple-darwin10"
 [ -z $IOS_SIMULATOR_HOSTARCH ] && export IOS_SIMULATOR_HOSTARCH="i686-apple-darwin11"
+[ -z $LIBFFI_PATH ] && export LIBFFI_PATH=`cd "../libffi-3.0.11-rc3/universal-ios/"; pwd`
 
 #IOS_PYTHON_OPTIMIZATION_CFLAGS="-O3"
 IOS_PYTHON_OPTIMIZATION_CFLAGS="-O0 -g"
-# TODO libffi host arch
 
 # some tools
 export CCACHE=$(which ccache)
@@ -74,6 +73,8 @@ fi
 
 echo "Building for iOS device ======================================================="
 
+#if 0; then
+
 [ -f Makefile ] && try make distclean
 
 # flags for arm compilation
@@ -103,6 +104,7 @@ try cp -f ./Modules/Setup.ios ./Modules/Setup.local
 try ./configure CC="$ARM_CC" LD="$ARM_LD" \
 	CFLAGS="$ARM_CFLAGS" LDFLAGS="$ARM_LDFLAGS" \
 	CXX="$ARM_CXX" CXXFLAGS="$ARM_CFLAGS" \
+  --with-system-ffi="$LIBFFI_PATH" \
   --disable-toolbox-glue \
 	--host=armv7-apple-darwin \
 	--prefix=`pwd`/_python-ios-arm \
@@ -118,6 +120,7 @@ try mv -f _python-ios-arm/lib/libpython2.7.a $PYTHON_OUTPUT_PATH/build/lib/libpy
 
 #deduplicate $BUILDROOT/lib/libpython2.7.a
 
+#fi
 
 echo "Building for iOS simulator ======================================================="
 
@@ -150,6 +153,7 @@ try cp -f ./Modules/Setup.ios ./Modules/Setup.local
 try ./configure CC="$ARM_CC" LD="$ARM_LD" \
 	CFLAGS="$ARM_CFLAGS" LDFLAGS="$ARM_LDFLAGS" \
 	CXX="$ARM_CXX" CXXFLAGS="$ARM_CFLAGS" \
+  --with-system-ffi="$LIBFFI_PATH" \
 	--disable-toolbox-glue \
 	--host=armv7-apple-darwin \
 	--prefix=`pwd`/_python-ios-simulator \
@@ -161,14 +165,12 @@ try make -j2 HOSTPYTHON="`pwd`/hostpython" HOSTPGEN="`pwd`/Parser/hostpgen" \
 
 try make -j2 install HOSTPYTHON="`pwd`/hostpython" CROSS_COMPILE_TARGET=yes prefix=`pwd`/_python-ios-simulator
 
-try mv -f _python-ios-simulator/lib/libpython2.7.a $PYTHON_OUTPUT_PATH/build/lib/libpython2.7.a
+try mv -f _python-ios-simulator/lib/libpython2.7.a $PYTHON_OUTPUT_PATH/build/lib/libpython2.7-simulator.a
 #try mv -f $BUILDROOT/python/lib/libpython2.7.a $BUILDROOT/lib/
 
 #deduplicate $BUILDROOT/lib/libpython2.7.a
 
 echo "Creating installation ======================================================="
-
-try pushd _python-ios-simulator
 
 # start base taken from https://github.com/kivy/kivy-ios/blob/master/tools/reduce-python.sh
 #
@@ -180,6 +182,8 @@ try pushd _python-ios-simulator
 #
 # create a lib/python27.zip file containing modules
 #
+
+try pushd _python-ios-simulator
 
 pushd ./lib
 
@@ -209,5 +213,20 @@ cp -R lib "$PYTHON_OUTPUT_PATH/bundle/lib"
 mkdir "$PYTHON_OUTPUT_PATH/bundle/include"
 mkdir "$PYTHON_OUTPUT_PATH/bundle/include/python2.7"
 cp include/python2.7/pyconfig.h "$PYTHON_OUTPUT_PATH/bundle/include/python2.7"
+
+try popd
+
+#
+# Combine static libraries
+#
+
+try pushd "$PYTHON_OUTPUT_PATH/build/lib"
+
+# multiple architectures
+lipo libpython2.7-arm.a libpython2.7-simulator.a -create -output libpython2.7-fat.a
+# embed libffi symbols in libpython
+libtool -o libpython2.7.a libpython2.7-fat.a "$LIBFFI_PATH/libffi.a"
+
+rm -f libpython2.7-arm.a libpython2.7-simulator.a libpython2.7-fat.a
 
 try popd

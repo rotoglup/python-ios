@@ -1,1 +1,3 @@
 iOS SDK does not provide the `environ` variable used in `Modules/posixmodule.c`. One should use `_NSGetEnviron()` function, but Apple considers it as a 'non-public API' and have rejected apps from the AppStore because of its use. Thus, disabled if `PYOS_APPLE_IOS` is defined.
+
+Modified `configure` to accept a user-defined path for libffi, given through the preexisting --with-system-ffi argument. This allows to use a version of libffi supporting iOS arm architecture (3.0.11rc3 +).
