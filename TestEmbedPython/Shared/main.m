@@ -22,6 +22,19 @@ int main(int argc, char *argv[]) {
   char* resString;
   float angle;
   
+  // customize python through environment variables
+  putenv("PYTHONOPTIMIZE=2");
+  putenv("PYTHONDONTWRITEBYTECODE=1");      /* no write access in Application Bundle */
+  putenv("PYTHONNOUSERSITE=1");
+  putenv("PYTHONPATH=.");
+  putenv("PYTHONVERBOSE=0");                /* debugging */
+  
+  NSBundle* bundle = [NSBundle mainBundle];
+  NSString * resourcePath = [bundle resourcePath];
+  NSLog(@"PythonHome is: %s", (char *)[resourcePath UTF8String]);
+  Py_SetPythonHome((char *)[resourcePath UTF8String]);
+  chdir((char *)[resourcePath UTF8String]);
+  
   PyImport_AppendInittab("xx", initxx);
   Py_Initialize();
   
@@ -56,6 +69,10 @@ int main(int argc, char *argv[]) {
   PyErr_Print();
   PyObject* args__ = Py_BuildValue("()");
   PyObject* result_ = PyEval_CallObject(testfn, args__);
+  
+  PyObject* pName = PyString_FromString("test_ctypes");
+  PyObject* pModule = PyImport_Import(pName);
+  Py_DECREF(pName);
   
   /*
   printf("%p", dlsym(RTLD_MAIN_ONLY, "Py_SetProgramName"));

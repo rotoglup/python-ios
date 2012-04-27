@@ -13,6 +13,7 @@
 		03A9300E152A396600A6CED6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A9300D152A396600A6CED6 /* libz.dylib */; };
 		1A0654D9154AB44B008FC420 /* include in Resources */ = {isa = PBXBuildFile; fileRef = 1A0654D7154AB44B008FC420 /* include */; };
 		1A0654DA154AB44B008FC420 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 1A0654D8154AB44B008FC420 /* lib */; };
+		1AD5A2E6154AE1FA00EB2274 /* test_ctypes.py in Resources */ = {isa = PBXBuildFile; fileRef = 1AD5A2E5154AE1FA00EB2274 /* test_ctypes.py */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -31,6 +32,7 @@
 		03A9300D152A396600A6CED6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		1A0654D7154AB44B008FC420 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = ../../py27/bundle/include; sourceTree = "<group>"; };
 		1A0654D8154AB44B008FC420 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../py27/bundle/lib; sourceTree = "<group>"; };
+		1AD5A2E5154AE1FA00EB2274 /* test_ctypes.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = test_ctypes.py; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* TestEmbedPython.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestEmbedPython.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -73,6 +75,7 @@
 		1A0654D6154AB435008FC420 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1AD5A2E5154AE1FA00EB2274 /* test_ctypes.py */,
 				1A0654D7154AB44B008FC420 /* include */,
 				1A0654D8154AB44B008FC420 /* lib */,
 			);
@@ -198,6 +201,7 @@
 				2860E32F111B888700E27156 /* MainWindow_iPad.xib in Resources */,
 				1A0654D9154AB44B008FC420 /* include in Resources */,
 				1A0654DA154AB44B008FC420 /* lib in Resources */,
+				1AD5A2E6154AE1FA00EB2274 /* test_ctypes.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
