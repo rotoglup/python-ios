@@ -11,6 +11,8 @@
 		0320D21C152FBB8300A71B8C /* libpython2.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0320D21B152FBB8300A71B8C /* libpython2.7.a */; };
 		0389DB3E152BC54B0079D4A5 /* xxmodule.c in Sources */ = {isa = PBXBuildFile; fileRef = 0389DB3D152BC54B0079D4A5 /* xxmodule.c */; };
 		03A9300E152A396600A6CED6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A9300D152A396600A6CED6 /* libz.dylib */; };
+		1A0654D9154AB44B008FC420 /* include in Resources */ = {isa = PBXBuildFile; fileRef = 1A0654D7154AB44B008FC420 /* include */; };
+		1A0654DA154AB44B008FC420 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 1A0654D8154AB44B008FC420 /* lib */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -27,6 +29,8 @@
 		0320D21B152FBB8300A71B8C /* libpython2.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpython2.7.a; path = ../../py27/build/lib/libpython2.7.a; sourceTree = SOURCE_ROOT; };
 		0389DB3D152BC54B0079D4A5 /* xxmodule.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xxmodule.c; sourceTree = "<group>"; };
 		03A9300D152A396600A6CED6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		1A0654D7154AB44B008FC420 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = ../../py27/bundle/include; sourceTree = "<group>"; };
+		1A0654D8154AB44B008FC420 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = ../../py27/bundle/lib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* TestEmbedPython.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestEmbedPython.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -66,6 +70,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1A0654D6154AB435008FC420 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1A0654D7154AB44B008FC420 /* include */,
+				1A0654D8154AB44B008FC420 /* lib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2860E324111B887F00E27156 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +110,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1A0654D6154AB435008FC420 /* Resources */,
 				2860E32A111B888700E27156 /* iPad */,
 				2860E324111B887F00E27156 /* iPhone */,
 				28EEBF621118D79A00187D67 /* Shared */,
@@ -182,6 +196,8 @@
 			files = (
 				2860E329111B887F00E27156 /* MainWindow_iPhone.xib in Resources */,
 				2860E32F111B888700E27156 /* MainWindow_iPad.xib in Resources */,
+				1A0654D9154AB44B008FC420 /* include in Resources */,
+				1A0654DA154AB44B008FC420 /* lib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +228,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TestEmbedPython_Prefix.pch;
-				HEADER_SEARCH_PATHS = /Volumes/data/py27/build/include;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../py27/build/include";
 				INFOPLIST_FILE = "TestEmbedPython-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -230,7 +246,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TestEmbedPython_Prefix.pch;
-				HEADER_SEARCH_PATHS = /Volumes/data/py27/build/include;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../py27/build/include";
 				INFOPLIST_FILE = "TestEmbedPython-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
