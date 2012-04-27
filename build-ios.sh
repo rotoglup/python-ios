@@ -223,9 +223,9 @@ try popd
 try pushd "$PYTHON_OUTPUT_PATH/build/lib"
 
 # multiple architectures
-lipo libpython2.7-arm.a libpython2.7-simulator.a -create -output libpython2.7-fat.a
+try lipo libpython2.7-arm.a libpython2.7-simulator.a -create -output libpython2.7-fat.a
 # embed libffi symbols in libpython
-libtool -o libpython2.7.a libpython2.7-fat.a "$LIBFFI_PATH/libffi.a"
+try libtool -o libpython2.7.a libpython2.7-fat.a "$LIBFFI_PATH/lib/libffi.a"
 
 rm -f libpython2.7-arm.a libpython2.7-simulator.a libpython2.7-fat.a
 
