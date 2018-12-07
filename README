@@ -1,0 +1,6 @@
+Experiments trying to build Python 2.7 for iOS :
+
+* the `python-2.7.2` branch contains the official code
+* the other branches contain patches attempts
+
+Dropped the project in 2012
